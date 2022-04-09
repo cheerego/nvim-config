@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+local keybinding = require("keybindings")
 
 cmp.setup({
   -- 指定 snippet 引擎
@@ -34,7 +35,7 @@ cmp.setup({
   }, { { name = "buffer" }, { name = "path" } }),
 
   -- 快捷键设置
-  mapping = require("keybindings").cmp(cmp),
+  mapping = keybinding.cmp(cmp),
 })
 
 -- / 查找模式使用 buffer 源
