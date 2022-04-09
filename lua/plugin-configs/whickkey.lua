@@ -50,22 +50,22 @@ wk.setup {
     show_help = true -- show help message on the command line when the popup is visible
 }
 
-wk.register({
-    ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-    p = {
-        name = "Packer",
-        c = { "<cmd>PackerCompile<cr>", "Compile" },
-        i = { "<cmd>PackerInstall<cr>", "Install" },
-        r = { "<cmd>lua require('lvim.plugin-loader').recompile()<cr>", "Re-compile" },
-        s = { "<cmd>PackerSync<cr>", "Sync" },
-        S = { "<cmd>PackerStatus<cr>", "Status" },
-        u = { "<cmd>PackerUpdate<cr>", "Update" },
-      },
-    }, {
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = true -- use `nowait` when creating keymaps
-})
+-- wk.register({
+--     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+--     p = {
+--         name = "Packer",
+--         c = { "<cmd>PackerCompile<cr>", "Compile" },
+--         i = { "<cmd>PackerInstall<cr>", "Install" },
+--         r = { "<cmd>lua require('lvim.plugin-loader').recompile()<cr>", "Re-compile" },
+--         s = { "<cmd>PackerSync<cr>", "Sync" },
+--         S = { "<cmd>PackerStatus<cr>", "Status" },
+--         u = { "<cmd>PackerUpdate<cr>", "Update" },
+--       },
+--     }, {
+--     mode = "n", -- NORMAL mode
+--     prefix = "<leader>",
+--     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+--     silent = true, -- use `silent` when creating keymaps
+--     noremap = true, -- use `noremap` when creating keymaps
+--     nowait = true -- use `nowait` when creating keymaps
+-- })

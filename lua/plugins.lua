@@ -65,6 +65,7 @@ packer.startup({
 
     use({ "lewis6991/gitsigns.nvim" })
 
+    use({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" })
 
   end,
   config = {
