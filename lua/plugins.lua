@@ -67,14 +67,9 @@ packer.startup({
             run = ":TSUpdate"
         })
 
-        use('folke/which-key.nvim')
-        -- Comment
-        use("numToStr/Comment.nvim")
-
-        use({"lewis6991/gitsigns.nvim"})
 
         use({"neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer"})
-
+        ---- lsp
         -- 补全引擎
         use("hrsh7th/nvim-cmp")
         -- snippet 引擎
@@ -92,8 +87,24 @@ packer.startup({
         use("onsails/lspkind-nvim")
         use("tami5/lspsaga.nvim" )
 
+        ----- tools
+
         -- indent-blankline
         use("lukas-reineke/indent-blankline.nvim")
+
+        use('folke/which-key.nvim')
+        -- Comment
+        use("numToStr/Comment.nvim")
+
+        use({"lewis6991/gitsigns.nvim"})
+
+        use({ "akinsho/toggleterm.nvim" })
+        -- surround
+        use("ur4ltz/surround.nvim")
+    
+        -- nvim-autopairs
+        use("windwp/nvim-autopairs")
+    
 
     end,
     config = {
@@ -261,4 +272,5 @@ require("plugin-configs.treesitter")
 require("plugin-configs.whickkey")
 require("plugin-configs.comment")
 require("plugin-configs.gitsigns")
+require("plugin-configs.toggleterm")
 require("plugin-configs.indent-blankline")
