@@ -20,6 +20,7 @@ bufferline.setup({
             highlight = "Directory",
             text_align = "left"
         }},
+        max_name_length = 25,
         -- For ⁸·₂
         numbers = function(opts)
             return string.format('%s', opts.lower(opts.ordinal))

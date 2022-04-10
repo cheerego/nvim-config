@@ -92,7 +92,11 @@ packer.startup({
         -- indent-blankline
         use("lukas-reineke/indent-blankline.nvim")
 
-        use('folke/which-key.nvim')
+
+        use {
+            'AckslD/nvim-whichkey-setup.lua',
+            requires = {'liuchengxu/vim-which-key'},
+        }
         -- Comment
         use("numToStr/Comment.nvim")
 
