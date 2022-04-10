@@ -1,110 +1,90 @@
-local status, wk = pcall(require, "whichkey_setup")
+local status, wk = pcall(require, "which-key")
 if not status then
     vim.notify("没有找到 whick-key")
     return
 end
 
 
-wk.config{
-    hide_statusline = false,
-    default_keymap_settings = {
-        silent=true,
-        noremap=true,
+
+
+wk.setup {
+    plugins = {
+        marks = true, -- shows a list of your marks on ' and `
+        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+        -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+        -- No actual key bindings are created
+        presets = {
+            operators = false, -- adds help for operators like d, y, ...
+            motions = false, -- adds help for motions
+            text_objects = false, -- help for text objects triggered after entering an operator
+            windows = true, -- default bindings on <c-w>
+            nav = true, -- misc bindings to work with windows
+            z = true, -- bindings for folds, spelling and others prefixed with z
+            g = true -- bindings for prefixed with g
+        },
+        spelling = {
+            enabled = true,
+            suggestions = 20
+        } -- use which-key for spelling hints
     },
-    default_mode = 'n',
+    icons = {
+        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+        separator = "➜", -- symbol used between a key and it's label
+        group = "+" -- symbol prepended to a group
+    },
+    window = {
+        border = "single", -- none, single, double, shadow
+        position = "bottom", -- bottom, top
+        margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
+        padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
+    },
+    layout = {
+        height = {
+            min = 4,
+            max = 25
+        }, -- min and max height of the columns
+        width = {
+            min = 20,
+            max = 50
+        }, -- min and max width of the columns
+        spacing = 3 -- spacing between columns
+    },
+    hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+    show_help = true -- show help message on the command line when the popup is visible
 }
 
-local keymap = {
-    
-    w = {':w!<CR>', 'save file'}, -- set a single command and text
-    j = 'split args', -- only set a text for an already configured keymap
-    ['<CR>'] = {'@q', 'macro q'}, -- setting a special key
-    f = { -- set a nested structure
-        name = '+find',
-        b = {'<Cmd>Telescope buffers<CR>', 'buffers'},
-        h = {'<Cmd>Telescope help_tags<CR>', 'help tags'},
-        c = {
-            name = '+commands',
-            c = {'<Cmd>Telescope commands<CR>', 'commands'},
-            h = {'<Cmd>Telescope command_history<CR>', 'history'},
-        },
-        q = {'<Cmd>Telescope quickfix<CR>', 'quickfix'},
-        g = {
-            name = '+git',
-            g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
-            c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
-            b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
-            s = {'<Cmd>Telescope git_status<CR>', 'status'},
-        },
+
+
+local mappings = {
+
+    P = {
+        name = "Packer",
+        s = {":PackerSync<CR>","PackerSync"}
+    },
+    E = {":e ~/.config/nvim/init.vim<CR>", "Edit config"},
+    f = {":Telescope find_files<CR>", "Telescope Find Files"},
+    r = {":Telescope live_grep<CR>", "Telescope Live Grep"},
+    a = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action"},
+    g = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show line diagnostics"},
+    t = {
+        name = "toggle",
+        t = {":ToggleTerm<CR>", "Term"},
+        f = {":NvimTreeFocus<CR>","File Tree"}
+    },
+    l = {
+        name = "LSP",
+        i = {":LspInfo<cr>", "Connected Language Servers"},
+        A = {"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add workspace folder"},
+        R = {"<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove workspace folder"},
+        l = {"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List workspace"},
+        D = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition"},
+        r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename"},
+        a = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action"},
+        e = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show line diagnostic"},
+        q = {"<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "Set loclist"},
+        f = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format"}
     }
 }
-
-wk.register_keymap('leader', keymap)
-
--- wk.setup()
-
--- wk.setup {
---     plugins = {
---         marks = true, -- shows a list of your marks on ' and `
---         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
---         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
---         -- No actual key bindings are created
---         presets = {
---             operators = false, -- adds help for operators like d, y, ...
---             motions = false, -- adds help for motions
---             text_objects = false, -- help for text objects triggered after entering an operator
---             windows = true, -- default bindings on <c-w>
---             nav = true, -- misc bindings to work with windows
---             z = true, -- bindings for folds, spelling and others prefixed with z
---             g = true -- bindings for prefixed with g
---         },
---         spelling = {
---             enabled = true,
---             suggestions = 20
---         } -- use which-key for spelling hints
---     },
---     icons = {
---         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
---         separator = "➜", -- symbol used between a key and it's label
---         group = "+" -- symbol prepended to a group
---     },
---     window = {
---         border = "single", -- none, single, double, shadow
---         position = "bottom", -- bottom, top
---         margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
---         padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
---     },
---     layout = {
---         height = {
---             min = 4,
---             max = 25
---         }, -- min and max height of the columns
---         width = {
---             min = 20,
---             max = 50
---         }, -- min and max width of the columns
---         spacing = 3 -- spacing between columns
---     },
---     hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
---     show_help = true -- show help message on the command line when the popup is visible
--- }
-
--- wk.register({
---     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
---     p = {
---         name = "Packer",
---         c = { "<cmd>PackerCompile<cr>", "Compile" },
---         i = { "<cmd>PackerInstall<cr>", "Install" },
---         r = { "<cmd>lua require('lvim.plugin-loader').recompile()<cr>", "Re-compile" },
---         s = { "<cmd>PackerSync<cr>", "Sync" },
---         S = { "<cmd>PackerStatus<cr>", "Status" },
---         u = { "<cmd>PackerUpdate<cr>", "Update" },
---       },
---     }, {
---     mode = "n", -- NORMAL mode
---     prefix = "<leader>",
---     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
---     silent = true, -- use `silent` when creating keymaps
---     noremap = true, -- use `noremap` when creating keymaps
---     nowait = true -- use `nowait` when creating keymaps
--- })
+wk.register(mappings, {
+    prefix = "<leader>"
+})
