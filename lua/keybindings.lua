@@ -187,13 +187,13 @@ map("n", "<C-f>", ":Telescope live_grep<CR>", opt)
 pluginKeys.telescopeList = {
   i = {
     -- 上下移动
-    ["<Down>"] = "move_selection_next",
-    ["<Up>"] = "move_selection_previous",
+    ["<C-j>"] = "move_selection_next",
+    ["<C-k>"] = "move_selection_previous",
     ["<C-n>"] = "move_selection_next",
     ["<C-p>"] = "move_selection_previous",
     -- 历史记录
-    ["<C-j>"] = "cycle_history_next",
-    ["<C-k>"] = "cycle_history_prev",
+    ["<Down>"] = "cycle_history_next",
+    ["<Up>"] = "cycle_history_prev",
     -- 关闭窗口
     -- ["<esc>"] = actions.close,
     ["<C-c>"] = "close",
