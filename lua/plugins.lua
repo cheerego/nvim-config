@@ -77,6 +77,7 @@ packer.startup({
         -- 补全源
         use("hrsh7th/cmp-vsnip")
         use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
+        use("hrsh7th/cmp-nvim-lsp-signature-help")
         use("hrsh7th/cmp-buffer") -- { name = 'buffer' },
         use("hrsh7th/cmp-path") -- { name = 'path' }
         use("hrsh7th/cmp-cmdline") -- { name = 'cmdline' }
