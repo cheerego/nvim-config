@@ -10,13 +10,13 @@ cmp.setup({
   snippet = {
     expand = function(args)
       -- For `vsnip` users.
-      vim.fn["vsnip#anonymous"](args.body)
+      --vim.fn["vsnip#anonymous"](args.body)
 
       -- For `luasnip` users.
       -- require('luasnip').lsp_expand(args.body)
 
       -- For `ultisnips` users.
-      -- vim.fn["UltiSnips#Anon"](args.body)
+       vim.fn["UltiSnips#Anon"](args.body)
 
       -- For `snippy` users.
       -- require'snippy'.expand_snippet(args.body)
@@ -27,7 +27,7 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
     -- For vsnip users.
-    { name = "vsnip" },
+    { name = "ultisnips" },
     { name = "buffer" },
     -- For luasnip users.
     -- { name = 'luasnip' },
@@ -44,10 +44,12 @@ cmp.setup({
 })
 
 -- Use buffer source for `/`.
-cmp.setup.cmdline("/", {
-  sources = {
-    { name = "buffer" },
-  },
+cmp.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
+    { name = 'buffer' }
+  })
 })
 
 -- Use cmdline & path source for ':'.

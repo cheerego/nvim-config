@@ -1,0 +1,9 @@
+{
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.11",
+      "path": "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk"
+    }
+  ]
+}

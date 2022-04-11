@@ -6,8 +6,8 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local paccker_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
     vim.notify("正在安装Pakcer.nvim，请稍后...")
-    paccker_bootstrap = fn.system({"git", "clone", "--depth", "1", -- "https://github.com/wbthomason/packer.nvim",
-    "https://gitcode.net/mirrors/wbthomason/packer.nvim", install_path})
+    paccker_bootstrap = fn.system({ "git", "clone", "--depth", "1", -- "https://github.com/wbthomason/packer.nvim",
+                                    "https://gitcode.net/mirrors/wbthomason/packer.nvim", install_path })
 
     -- https://github.com/wbthomason/packer.nvim/issues/750
     local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
@@ -43,19 +43,19 @@ packer.startup({
         -- 顶部标签栏
         use({
             "akinsho/bufferline.nvim",
-            requires = {"kyazdani42/nvim-web-devicons", "moll/vim-bbye"}
+            requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" }
         })
 
         -- 底部状态栏
         use({
             "nvim-lualine/lualine.nvim",
-            requires = {"kyazdani42/nvim-web-devicons"}
+            requires = { "kyazdani42/nvim-web-devicons" }
         })
         use("arkav/lualine-lsp-progress")
 
         use {
             'nvim-telescope/telescope.nvim',
-            requires = {{'nvim-lua/plenary.nvim'}}
+            requires = { { 'nvim-lua/plenary.nvim' } }
         }
         use("ahmedkhalf/project.nvim")
 
@@ -67,8 +67,7 @@ packer.startup({
             run = ":TSUpdate"
         })
 
-
-        use({"neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer"})
+        use({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer" })
         ---- lsp
         -- 补全引擎
         use("hrsh7th/nvim-cmp")
@@ -78,10 +77,16 @@ packer.startup({
         use("hrsh7th/cmp-vsnip")
         use("hrsh7th/cmp-nvim-lsp") -- { name = nvim_lsp }
         use("hrsh7th/cmp-nvim-lsp-signature-help")
+        use("hrsh7th/cmp-nvim-lsp-document-symbol")
         use("hrsh7th/cmp-buffer") -- { name = 'buffer' },
         use("hrsh7th/cmp-path") -- { name = 'path' }
         use("hrsh7th/cmp-cmdline") -- { name = 'cmdline' }
 
+        --use('dcampos/nvim-snippy')
+        --use('dcampos/cmp-snippy')
+
+        --use('SirVer/ultisnips')
+        --use('quangnguyen30192/cmp-nvim-ultisnips')
 
         use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
@@ -89,7 +94,7 @@ packer.startup({
         use("rafamadriz/friendly-snippets")
         -- lsp ui (新增)
         use("onsails/lspkind-nvim")
-        use("tami5/lspsaga.nvim" )
+        use("tami5/lspsaga.nvim")
 
         ----- tools
 
@@ -109,15 +114,15 @@ packer.startup({
         -- Comment
         use("numToStr/Comment.nvim")
 
-        use({"lewis6991/gitsigns.nvim"})
+        use({ "lewis6991/gitsigns.nvim" })
 
         use({ "akinsho/toggleterm.nvim" })
         -- surround
         use("ur4ltz/surround.nvim")
-    
+
         -- nvim-autopairs
         use("windwp/nvim-autopairs")
-    
+
 
     end,
     config = {
@@ -139,8 +144,6 @@ packer.startup({
         }
     }
 })
-
-
 
 require("plugin-configs.nvim-tree")
 require("plugin-configs.bufferline")
